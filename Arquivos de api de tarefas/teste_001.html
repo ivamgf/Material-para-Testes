@@ -1,0 +1,22 @@
+<!DOCTYPE html!>
+<html lang="pt-br" ng-app="System">
+     <head>
+	     <title>System</title>
+		 <meta charset="utf-8"></meta>
+		 <script src="angular/angular.js"></script>
+		 <script>
+		    angular.module("System", []);
+			angular.module("System").controller("SystemCtrl",
+			function ($scope){
+			     $scope.message = "Welcome to the System!";
+			}
+			);
+		 </script>	
+	 </head>
+     <body>
+	     <div ng-controller="SystemCtrl">
+		     {{message}}
+		 </div>
+	 
+     </body>
+</html>

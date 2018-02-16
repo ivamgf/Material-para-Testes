@@ -1,0 +1,72 @@
+/* CSS Document */
+.jumbotron{
+	width:600px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:15px;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+.jumbotron h3{
+	margin-top: 0;
+	padding-bottom: 10px;
+	color: #FFF;
+	background-color: #acacac;
+	border-radius: 5px;
+	text-align:center;
+	height:30px;
+}
+
+.table{
+	margin-top:15px;
+}
+
+.form-control{
+	margin-bottom:10px;
+	/*margin-left:10px;
+	width:300px;*/
+}
+
+.formulario{
+	width:370px;
+	margin:auto;
+}
+
+.selecionado{
+	background-color:#BBC9FC;	
+}
+
+.negrito{
+	font-weight:bold;
+}
+
+.rodape{
+	text-align:center;
+}
+
+.dir-alerta{
+	background-color: #f2dede;
+	padding: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	border-radius: 5px;
+}
+
+.dir-alerta-title{
+	color: #af4341;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.dir-alerta-mensagem{
+	color: #af4341;
+}
+
+
+
+
+
+
+

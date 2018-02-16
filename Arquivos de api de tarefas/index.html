@@ -1,0 +1,164 @@
+<!DOCTYPE html!>
+<html lang="pt-br" ng-app="CadTarefas">
+     <head>
+	     <title>Tarefas</title>
+		 <meta charset="utf-8"></meta>
+		 <script src="angular/angular.js"></script>
+         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+		 <link rel="stylesheet" type="text/css" href="style.css">
+		 <link rel="stylesheet" type="text/css" href="app.css">
+		 <script src="angular/angular-locale_pt-br.js"></script>
+		 <script src="Diretivas/dir-alerta.js"></script>
+		 <script src="app.js"></script>
+		 <script src="bower.json"></script>
+		 <script src="package.json"></script>
+		 <script src="*.gitkeep"></script>
+		 <script>
+             angular.module("CadTarefas", []);
+			 angular.module("CadTarefas").controller("CadTarefasCtrl",
+			 function ($scope){
+			     $scope.app="FAZER";
+				 $scope.msg="Uau, você não tem mais nada para fazer, aproveite o resto do seu dia!";
+				 $scope.msg1="";
+				 $scope.msg2="";
+				 $scope.msg3="";
+				 $scope.tarefas = [
+				 {id: "---", tarefa: "---", descricao: "---", data: ""},
+				 				 
+				 ];
+
+				 $scope.tarefaTipos = [
+				 {tipo: "---", codigo: "00"},
+				 {tipo: "Fazer compras", codigo: "01"},
+				 {tipo: "Trabalhar", codigo: "02"},
+				 ];
+				 
+                 $scope.time = new Date();
+
+                 
+				 $scope.adicionarTarefas = function(tarefa){
+				     
+				         $scope.tarefas.push(angular.copy(tarefa));
+					         delete $scope.tarefa;
+						     delete $scope.msg;
+				             $scope.tarefaForm.$setPristine();                             
+				 };
+
+				 $scope.editarTarefas = function(tarefa){
+                         $scope.tarefas.push(angular.copy(tarefa));
+                         if (!tarefa.selecionado){
+                             $scope.msg3="Você é um Hacker ou algo assim?A tarefa que você estava tentando editar não existe!";        
+                         };
+				 };
+				 
+				 $scope.apagarTarefas = function(tarefas){
+				     $scope.tarefas = tarefas.filter(function(tarefa){
+					     if (!tarefa.selecionado) return tarefa;					     
+					 });
+					 $scope.msg2="Boa notícia! A tarefa que você estava tentando excluir nem sequer existia!";   
+				 };
+				 
+				 $scope.temtarefaSelecionado = function(tarefas){
+ 				     return tarefas.some(function(tarefa){
+                         return tarefa.selecionado;
+				  });
+				 };
+				 
+				 $scope.classe1 = "selecionado";
+				 $scope.classe2 = "negrito";
+				 
+			 });
+         </script>		 
+		 
+	 </head>
+     <body ng-controller="CadTarefasCtrl">
+         <div ng-include="'header.html'"></div>
+         <div ng-include="'list.html'"></div>
+	     <div class="jumbotron">
+		     <div>
+			     <h3>  {{app}} </h3>
+			 </div>
+			 <div div-alerta></div>
+			 <br>
+			 <div class="well">
+			     <strong>{{msg}}{{msg1}}{{msg2}}{{msg3}}</strong>
+			 </div>
+			 <br>			 
+         <input type="text" class="form-control" ng-model="Buscar" placeholder="Busque Aqui">	 
+		 <table ng-show="tarefas.length > 0" class="table">
+		     <tr align="center">
+			     <td></td>
+			     <td><b>id</b></td>
+				 <td><b>Tarefa</b></td>
+				 <td><b>Descrição</b></td>
+				 <td><b>Tipo de Tarefa</b></td>
+				 <td><b>Data de Cadastro</b></td>
+			</tr>
+			 <tr ng-class="{'selecionado negrito': tarefa.selecionado}" 
+			 ng-repeat="tarefa in tarefas | filter:Buscar | orderBy: 'nome':true | limitTo: 20" 
+			 align="center">
+			     <td><input type = "checkbox" ng-model="tarefa.selecionado">Feito</td>
+				 <td> {{tarefa.id | uppercase}}{{inc}} </td>
+			     <td>  {{tarefa.tarefa}} </td>
+				 <td>  {{tarefa.descricao}} </td>
+				 <td>  {{tarefa.tarefaTipos.tipo}} </td>
+				 <td>  {{time | date: 'dd/MM/yyyy HH:mm' }} </td>
+		     </tr>
+	     </table>
+		 <hr>
+		 <form name="tarefaForm">
+		 <input class="form-control" type="text" ng-model="tarefa.id" name="id"
+		 placeholder="Id" ng-required="true">
+		 
+		 <input class="form-control" type="text" ng-model="tarefa.tarefa" name="tarefa" 
+		 placeholder="Tarefa" ng-required="true">
+		 
+		 <input class="form-control" type="text" ng-model="tarefa.descricao" name="descricao"
+		 placeholder="Descrição" ng-required="true">
+
+		 <select class="form-control" ng-model="tarefa.tarefaTipos" name="tipo"
+		 ng-options="tarefaTipo.tipo group by tarefaTipo.tipo for tarefaTipo in tarefaTipos" ng-required="true">
+		     <option value=""> Selecione um tipo de tarefa </option>
+		 </select>
+		 
+		 </form>
+		 
+         <div ng-show="tarefaForm.id.$invalid && tarefaForm.id.$dirty" class="alert alert-danger">
+             Mover ruim! Tente remover a tarefa em vez de excluir seu conteúdo!
+         </div>
+
+         <div ng-show="tarefaForm.tarefa.$invalid && tarefaForm.tarefa.$dirty" class="alert alert-danger">
+             Mover ruim! Tente remover a tarefa em vez de excluir seu conteúdo!
+         </div>
+
+         <div ng-show="tarefaForm.descricao.$invalid && tarefaForm.descricao.$dirty" class="alert alert-danger">
+             Mover ruim! Tente remover a tarefa em vez de excluir seu conteúdo!
+         </div>
+
+         <div ng-show="tarefaForm.tipo.$invalid" class="alert alert-danger">
+             O tipo de tarefa fornecido não é suportado!
+         </div>
+
+         <button class="btn btn-primary btn-block" ng-click="adicionarTarefas(tarefa)"
+		 ng-disabled="tarefaForm.$invalid">
+		     Adicionar Tarefa
+		 </button>
+
+		 <button class="btn btn-primary btn-block" ng-click="editarTarefas(tarefa)"
+		 ng-show="temtarefaSelecionado(tarefas)">
+		     Editar Tarefa
+		 </button>
+		 
+		 <button class="btn btn-danger btn-block" ng-click="apagarTarefas(tarefas)" 
+		 ng-show="temtarefaSelecionado(tarefas)">
+		     Apagar Tarefa
+		 </button>
+		  
+		 </div>
+		 
+		 <div class="rodape">
+		     Ivam Galvão Filho
+		 </div>
+		 		 		 
+     </body>
+</html>
