@@ -1,0 +1,101 @@
+<!DOCTYPE html!>
+<html lang="pt-br" ng-app="PrevisaoTempo">
+     <head>
+	     <title>Aplicativo</title>
+		 
+		 <!--Bloco de código meta -->
+		 <meta charset="utf-8"></meta>
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!--Bloco de código meta -->
+		 	 
+		 <!--Bloco de código link -->
+         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+		 <link rel="stylesheet" type="text/css" href="style2.css">
+		 <!--Bloco de código link -->
+         
+         <!--Bloco de código script -->
+		 <script src="angular/angular.min.js"></script>
+		 <!--<script src="bootstrap/js/bootstrap.js"></script>-->
+		 <script src="jquery.min.js"></script>
+		 <script src="angular/angular-locale_pt-br.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <!--Bloco de código Javascript que realiza o redirecionamento da página da API OpenWeatherMap-->
+         <script src="apiOpenWeather.js"></script>
+                  
+         <!--Bloco de código script do controller e scope's do Angular JS -->
+		 <script>
+             angular.module("PrevisaoTempo", []);
+
+             //Controller do aplicativo
+			 angular.module("PrevisaoTempo").controller("PrevisaoTempoCtrl",
+			 function ($scope){
+			     //scope de título do app
+			     $scope.app="PREVISÃO DO TEMPO";
+			     //scope de título do app
+
+			     //scope de mensagens
+				 $scope.msg="Descubra a previsão do tempo em sua cidade!";
+				 //scope de mensagens
+				 				 				 
+			 });
+         </script>
+         <!--Bloco de código script do controller e scope's do Angular JS -->          
+		 
+	 </head>
+     <body ng-controller="PrevisaoTempoCtrl">
+         
+         <!--Bloco de código Jumbotron do Bootstrap -->
+	         
+	         <div class="alert alert-success">
+		     <div>
+			     <h3>  {{app}} </h3>
+			 
+ 		     </div>
+			 <br>
+
+			 <!--Bloco de código do painel da classe well do Bootstrap -->
+			 
+			 <div class="well">
+			     <strong>{{msg}}</strong>
+			 </div>
+			
+			 <br>	
+			 <!--Bloco de código do painel da classe well do Bootstrap -->
+
+             <!--Bloco de código do formulário -->
+	    	 
+		     <form name="cidadeForm">
+		         
+                 <input class="form-control" type="text" ng-model="cidade.cidade" name="cidade" id="cidade"
+	        	 placeholder="Digite aqui a cidade para ver a previsão!" ng-required="true">		 
+	         	 			 
+		     </form>
+		     <!--Bloco de código do formulário -->
+
+             <!--Bloco de mensagem de erro de cidade null -->
+                 <div ng-show="cidadeForm.cidade.$invalid && cidadeForm.cidade.$dirty" class="alert alert-danger">
+                 Digite uma cidade antes de gravar!
+                 </div>
+             <!--Bloco de mensagem de erro de cidade null -->            
+                              
+
+             <!--Bloco de código do botão ver previsão -->
+                                                       
+                 <button class="btn btn-primary btn-block" ng-disabled="cidadeForm.$invalid" id="btVer">
+		         Ver Previsão!
+		         </button>                     
+                                               
+		     <!--Bloco de código do botão ver previsão -->      
+		  
+		 </div>
+		 <!--Bloco de código Jumbotron do Bootstrap -->
+
+         <!--Bloco de código do rodapé -->
+		 <div class="rodape">
+		     Ivam Galvão Filho
+		 </div>
+		 <!--Bloco de código do rodapé -->
+
+     </body>
+</html>

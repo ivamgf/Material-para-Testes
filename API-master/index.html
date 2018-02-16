@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+     <head>
+	     <title>Aplicativo</title>
+		 
+		 <!--Bloco de código meta -->		 
+		 <meta charset="utf-8"></meta>
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!--Bloco de código meta -->
+		 	 
+		 <!--Bloco de código link-->
+		 <link rel="stylesheet" type="text/css" href="style.css">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		 <!-- Bloco de código link -->
+         
+         <!--Bloco de código script-->
+		 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/i18n/angular-locale_pt-br.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <script src="apiOpenWeather.js"></script>
+         <!--Bloco de código script-->
+	 </head>
+	 <body>
+	     <!--Bloco de código do container-->
+	     <div class="container">
+	         <!--Bloco de código do Jumbotron-->
+	         <div class="jumbotron">
+	             <!--Bloco de código do Iframe-->
+                 <iframe src="modal.html" width="800" height="400" name="mold" frameborder="no"></iframe>
+                 <!--Bloco de código do Iframe-->
+                 <!--Bloco de código do container-->
+                 <div class="container">
+                     <a href="modal.html" target="mold">
+                         <!--Bloco de código do botão btesc-->
+                         <button type="button" class="btn btn-primary btn-block" id="btesc">
+                             Escolher outra cidade!
+                         </button>
+                         <!--Bloco de código do botão btesc-->
+                     </a>
+                 </div>
+             <!--Bloco de código do container-->    
+             </div>
+         <!--Bloco de código do Jumbotron-->    
+         </div>
+         <!--Bloco de código do container-->
+	 </body>
+</html>	
